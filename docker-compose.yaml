@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+
+  db:
+    image: postgres:15.3
+    ports:
+      - "5502:5432"
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+    volumes:
+      - "./volumes/pgdata:/var/lib/postgresql/data"
+    networks:
+      - web
+      - internal
+
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
